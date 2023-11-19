@@ -4,7 +4,7 @@
       <input
         type="text"
         class="input-title"
-        placeholder="what is the note about..."
+        placeholder="New note title"
         v-model="title"
       />
 
