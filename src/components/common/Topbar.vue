@@ -1,18 +1,36 @@
 <template>
-  <div class="top-toolbar">
-    <div class="toolbar-title">
-      RS Notes
-      <span class="material-symbols-outlined"> edit_note </span>
+  <div class="topbar">
+    <div class="topbar-title">
+      Notes
+      <span
+        @click="showAddNoteForm"
+        class="action-icon material-symbols-sharp"
+      >
+        edit_note
+      </span>
     </div>
     <div class="action-icons">
-      <span class="material-symbols-outlined"> delete </span>
+      <span
+        v-if="noteStore.lastNoteID !== ''"
+        class="action-icon material-symbols-sharp"
+      >
+        delete
+      </span>
     </div>
     <div class="action-icons justify-end">
-      <span class="material-symbols-outlined"> search </span>
-      <span class="material-symbols-outlined"> view_list </span>
-      <span class="material-symbols-outlined"> grid_view </span>
+      <span class="action-icon material-symbols-sharp"> search </span>
+      <span class="action-icon material-symbols-sharp"> view_list </span>
+      <span class="action-icon material-symbols-sharp"> grid_view </span>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useNoteStore } from '@/stores/NoteStore';
+const noteStore = useNoteStore();
+
+const showAddNoteForm = () => {
+  noteStore.resetLastNoteID();
+  noteStore.showAddForm();
+};
+</script>

@@ -1,9 +1,9 @@
 {
   "name": "vue-notes",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode=development",
     "build": "vite build",
     "preview": "vite preview"
   },

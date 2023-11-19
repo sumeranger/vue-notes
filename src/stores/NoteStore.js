@@ -1,9 +1,14 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
 export const useNoteStore = defineStore('noteStore', {
   state: () => ({
     notes: [],
     lastNoteId: '',
+    currentNote: ref(''),
+    showEdit: ref(false),
+    showNote: ref(false),
+    showAdd: ref(true),
   }),
   getters: {
     allNotes: (state) => {
@@ -35,6 +40,28 @@ export const useNoteStore = defineStore('noteStore', {
         return item;
       });
       this.notes = updateNotes;
+    },
+    viewSelectedNote(id) {
+      this.updateCurrentNote(id);
+      this.lastNoteID = id;
+      this.showNoteDetails();
+    },
+    updateCurrentNote(id) {
+      const currentNote = this.notes.filter((note) => note.id == id);
+      this.currentNote = currentNote;
+    },
+    showAddForm() {
+      this.showAdd = true;
+      this.showEdit = false;
+      this.showNote = false;
+    },
+    showNoteDetails() {
+      this.showAdd = false;
+      this.showEdit = false;
+      this.showNote = true;
+    },
+    resetLastNoteID() {
+      this.lastNoteID = '';
     },
   },
 });

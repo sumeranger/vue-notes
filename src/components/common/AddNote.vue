@@ -21,7 +21,7 @@
         tpye="submit"
         class="form-save-btn"
       >
-        <span class="material-symbols-outlined">save</span>
+        <span class="material-symbols-sharp">save</span>
       </button>
     </form>
   </div>

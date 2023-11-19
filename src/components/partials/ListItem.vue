@@ -1,9 +1,10 @@
 <template>
+  <!-- List View -->
   <h4
     class="sidebar-title"
     v-if="'list' === type"
   >
-    <span class="sidebar-title-note-icon material-symbols-outlined">
+    <span class="sidebar-title-note-icon material-symbols-sharp">
       {{ icon }} </span
     >{{ title }}
   </h4>
@@ -15,21 +16,30 @@
       v-for="note in notes"
       :key="note.id"
     >
-      <p>{{ note.title }}</p>
+      <p @click="noteStore.viewSelectedNote(note.id)">
+        {{ note.title.substring(0, wordLimit) }}
+        {{ note.title.length > wordLimit ? '...' : '' }}
+      </p>
       <span
         v-if="note.pinned"
         @click="noteStore.markedAsUnpinned(note.id)"
-        class="note-list-icon material-symbols-outlined"
+        class="note-list-icon material-symbols-sharp"
       >
-        {{ icon }}
+        do_not_disturb_on
       </span>
       <span
         v-if="!note.pinned"
         @click="noteStore.markedAsPinned(note.id)"
-        class="note-list-icon material-symbols-outlined"
+        class="note-list-icon material-symbols-sharp"
       >
-        {{ icon }}
+        push_pin
       </span>
+    </li>
+    <li
+      v-if="notes < 1"
+      className="note-list-nothing-found"
+    >
+      <span>No found</span>
     </li>
   </ul>
 </template>
@@ -38,4 +48,6 @@
 import { useNoteStore } from '@/stores/NoteStore';
 const noteStore = useNoteStore();
 const props = defineProps(['notes', 'title', 'icon', 'type']);
+
+const wordLimit = 20;
 </script>
