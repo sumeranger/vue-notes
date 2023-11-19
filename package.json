@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "pinia": "^2.1.7",
+    "uuid": "^9.0.1",
     "vue": "^3.3.4",
     "vue-contenteditable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
-    "uuid": "^9.0.1",
     "vite": "^4.4.11"
   }
 }
