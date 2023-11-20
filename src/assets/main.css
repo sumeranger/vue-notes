@@ -197,13 +197,20 @@ li.note-list-nothing-found:hover::before {
   background-color: #17594a;
 }
 /* View Note */
-.view-note-details {
-  font-size: 0.825rem;
-  line-height: 1.25rem;
-}
 .view-note-title {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-transform: capitalize;
   font-size: 1rem;
   line-height: 1.5rem;
+}
+.view-note-timestamp {
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: #bbb;
+}
+.view-note-details {
+  font-size: 0.825rem;
+  line-height: 1.25rem;
 }

@@ -6,6 +6,9 @@
       :key="note.id"
     >
       <h4 className="view-note-title">{{ note.title }}</h4>
+      <div class="view-note-timestamp">
+        {{ moment(note.timestamp).format('MMMM Do YYYY, h:mm:ss a') }}
+      </div>
       <contenteditable
         tag="div"
         className="content-editable"
@@ -22,11 +25,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import { useNoteStore } from '@/stores/NoteStore';
 import contenteditable from 'vue-contenteditable';
+import moment from 'moment';
 
 const noteStore = useNoteStore();
-const title = ref('');
-const content = ref('');
 </script>
