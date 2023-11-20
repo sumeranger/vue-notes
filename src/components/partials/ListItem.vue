@@ -21,6 +21,12 @@
         {{ note.title.length > wordLimit ? '...' : '' }}
       </p>
       <span
+        @click="noteStore.deleteNote(note.id)"
+        class="note-list-icon material-symbols-sharp"
+      >
+        delete
+      </span>
+      <span
         v-if="note.pinned"
         @click="noteStore.markedAsUnpinned(note.id)"
         class="note-list-icon material-symbols-sharp"

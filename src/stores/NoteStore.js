@@ -22,7 +22,6 @@ export const useNoteStore = defineStore('noteStore', {
     addNote(newNote) {
       const newNotes = [newNote, ...this.notes];
       this.notes = newNotes;
-      console.log('newNotes: ', newNotes);
     },
     updateNote(changedNote) {
       const others = this.notes.filter((note) => note.id !== changedNote.id);
@@ -36,8 +35,15 @@ export const useNoteStore = defineStore('noteStore', {
         },
         ...others,
       ];
-      console.log('updateNotes: ', updateNotes);
       this.notes = updateNotes;
+    },
+    deleteNote(id) {
+      const isConfirmed = confirm('Are you sure?');
+      if (isConfirmed) {
+        const filteredNotes = this.notes.filter((item) => item.id !== id);
+        this.notes = filteredNotes;
+        this.showAddForm();
+      }
     },
     markedAsPinned(id) {
       const updateNotes = this.notes.map((item) => {
@@ -72,17 +78,9 @@ export const useNoteStore = defineStore('noteStore', {
       this.showNote = false;
     },
     showSelectedNote(id) {
-      console.log('id: ', id);
       this.updateCurrentNote(id);
       this.lastNoteID = id;
-      console.log('lastNoteID: ', this.lastNoteID);
       // state change
-      this.test();
-      // this.showAdd = false;
-      // this.showEdit = false;
-      // this.showNote = true;
-    },
-    test() {
       this.showAdd = false;
       this.showEdit = false;
       this.showNote = true;
