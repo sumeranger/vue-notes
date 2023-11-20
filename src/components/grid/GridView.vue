@@ -9,7 +9,7 @@
         noteStore.pinnedNotes.length > 0
       "
     >
-      <ListItem
+      <GridItem
         :notes="noteStore.pinnedNotes"
         :title="`Pinned Notes`"
         :icon="`push_pin`"
@@ -20,7 +20,7 @@
       className="notes-content-all-notes"
       v-if="!noteStore.showAdd && !noteStore.showNote && !noteStore.showEdit"
     >
-      <ListItem
+      <GridItem
         :notes="noteStore.allNotes"
         :title="`All Notes`"
         :icon="`notes`"
@@ -37,7 +37,7 @@
 import AddNote from '@/components/common/AddNote.vue';
 import UpdateNote from '@/components/common/UpdateNote.vue';
 import ViewNote from '@/components/common/ViewNote.vue';
-import ListItem from '../partials/ListItem.vue';
+import GridItem from '../partials/GridItem.vue';
 import { useNoteStore } from '@/stores/NoteStore';
 
 const noteStore = useNoteStore();
