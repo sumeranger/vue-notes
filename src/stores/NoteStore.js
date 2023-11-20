@@ -9,6 +9,8 @@ export const useNoteStore = defineStore('noteStore', {
     showEdit: ref(false),
     showNote: ref(false),
     showAdd: ref(true),
+    listView: ref(true),
+    gridView: ref(false),
   }),
   getters: {
     allNotes: (state) => {
@@ -92,6 +94,22 @@ export const useNoteStore = defineStore('noteStore', {
       this.showAdd = false;
       this.showEdit = true;
       this.showNote = false;
+    },
+    showListView() {
+      this.listView = true;
+      this.gridView = false;
+      this.showAdd = true;
+      this.showEdit = false;
+      this.showNote = false;
+      this.lastNoteID = '';
+    },
+    showGridView() {
+      this.listView = false;
+      this.gridView = true;
+      this.showAdd = false;
+      this.showEdit = false;
+      this.showNote = false;
+      this.lastNoteID = '';
     },
   },
 });

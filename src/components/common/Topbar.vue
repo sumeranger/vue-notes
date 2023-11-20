@@ -8,8 +8,18 @@
       >
         edit_note
       </span>
-      <span class="action-icon material-symbols-sharp"> view_list </span>
-      <span class="action-icon material-symbols-sharp"> grid_view </span>
+      <span
+        @click="noteStore.showListView()"
+        class="action-icon material-symbols-sharp"
+      >
+        view_list
+      </span>
+      <span
+        @click="noteStore.showGridView()"
+        class="action-icon material-symbols-sharp"
+      >
+        grid_view
+      </span>
     </div>
   </div>
 </template>
