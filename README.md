@@ -10,6 +10,7 @@ This template should help get you started developing with Vue 3 in Vite.
 4. Update the note
 5. Delete the note
 6. GridView
+7. Support localStorage for automatic saving and loading.
 
 ## Project Setup
 

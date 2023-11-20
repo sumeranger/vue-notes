@@ -1,17 +1,23 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
+export const LOCALSTORAGE_NOTES = 'notes';
+
 export const useNoteStore = defineStore('noteStore', {
-  state: () => ({
-    notes: [],
-    lastNoteId: '',
-    currentNote: ref({}),
-    showEdit: ref(false),
-    showNote: ref(false),
-    showAdd: ref(true),
-    listView: ref(true),
-    gridView: ref(false),
-  }),
+  state: () => {
+    return {
+      notes: localStorage.getItem(LOCALSTORAGE_NOTES)
+        ? JSON.parse(localStorage.getItem(LOCALSTORAGE_NOTES))
+        : [],
+      lastNoteId: '',
+      currentNote: ref({}),
+      showEdit: ref(false),
+      showNote: ref(false),
+      showAdd: ref(true),
+      listView: ref(true),
+      gridView: ref(false),
+    };
+  },
   getters: {
     allNotes: (state) => {
       return state.notes;
@@ -24,6 +30,7 @@ export const useNoteStore = defineStore('noteStore', {
     addNote(newNote) {
       const newNotes = [newNote, ...this.notes];
       this.notes = newNotes;
+      localStorage.setItem(LOCALSTORAGE_NOTES, JSON.stringify(newNotes));
     },
     updateNote(changedNote) {
       const others = this.notes.filter((note) => note.id !== changedNote.id);
@@ -38,6 +45,7 @@ export const useNoteStore = defineStore('noteStore', {
         ...others,
       ];
       this.notes = updateNotes;
+      localStorage.setItem('notes', JSON.stringify(updateNotes));
     },
     deleteNote(id) {
       const isConfirmed = confirm('Are you sure?');
@@ -45,6 +53,7 @@ export const useNoteStore = defineStore('noteStore', {
         const filteredNotes = this.notes.filter((item) => item.id !== id);
         this.notes = filteredNotes;
         this.showAddForm();
+        localStorage.setItem('notes', JSON.stringify(filteredNotes));
       }
     },
     markedAsPinned(id) {
@@ -55,6 +64,7 @@ export const useNoteStore = defineStore('noteStore', {
         return item;
       });
       this.notes = updateNotes;
+      localStorage.setItem('notes', JSON.stringify(updateNotes));
     },
     markedAsUnpinned(id) {
       const updateNotes = this.notes.map((item) => {
@@ -64,6 +74,7 @@ export const useNoteStore = defineStore('noteStore', {
         return item;
       });
       this.notes = updateNotes;
+      localStorage.setItem('notes', JSON.stringify(updateNotes));
     },
     updateCurrentNote(id) {
       const currentNote = this.notes.find((note) => note.id == id);
