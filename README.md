@@ -1,6 +1,6 @@
 # Vue Notes
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue + Pinia Notes App.
 
 ## Functionality
 
