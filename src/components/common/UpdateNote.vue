@@ -48,6 +48,7 @@ const handleUpdateForm = (e) => {
       content: content.value,
       timestamp: Date.now(),
     });
+    noteStore.showSelectedNote(insertId);
   } else {
     alert("Title can't be blank");
   }
