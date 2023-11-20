@@ -5,7 +5,7 @@ export const useNoteStore = defineStore('noteStore', {
   state: () => ({
     notes: [],
     lastNoteId: '',
-    currentNote: ref(''),
+    currentNote: ref({}),
     showEdit: ref(false),
     showNote: ref(false),
     showAdd: ref(true),
@@ -19,9 +19,25 @@ export const useNoteStore = defineStore('noteStore', {
     },
   },
   actions: {
-    addNote(note) {
-      const newNotes = [note, ...this.notes];
+    addNote(newNote) {
+      const newNotes = [newNote, ...this.notes];
       this.notes = newNotes;
+      console.log('newNotes: ', newNotes);
+    },
+    updateNote(changedNote) {
+      const others = this.notes.filter((note) => note.id !== changedNote.id);
+      const updateNotes = [
+        {
+          id: changedNote.id,
+          title: changedNote.title,
+          content: changedNote.content,
+          timestamp: Date.now(),
+          pinned: changedNote.pinned,
+        },
+        ...others,
+      ];
+      console.log('updateNotes: ', updateNotes);
+      this.notes = updateNotes;
     },
     markedAsPinned(id) {
       const updateNotes = this.notes.map((item) => {
@@ -41,27 +57,43 @@ export const useNoteStore = defineStore('noteStore', {
       });
       this.notes = updateNotes;
     },
-    viewSelectedNote(id) {
-      this.updateCurrentNote(id);
-      this.lastNoteID = id;
-      this.showNoteDetails();
-    },
     updateCurrentNote(id) {
-      const currentNote = this.notes.filter((note) => note.id == id);
+      const currentNote = this.notes.find((note) => note.id == id);
       this.currentNote = currentNote;
     },
+    resetLastNoteID() {
+      this.lastNoteID = '';
+    },
     showAddForm() {
+      this.resetLastNoteID();
+      // state change
       this.showAdd = true;
       this.showEdit = false;
       this.showNote = false;
     },
-    showNoteDetails() {
+    showSelectedNote(id) {
+      console.log('id: ', id);
+      this.updateCurrentNote(id);
+      this.lastNoteID = id;
+      console.log('lastNoteID: ', this.lastNoteID);
+      // state change
+      this.test();
+      // this.showAdd = false;
+      // this.showEdit = false;
+      // this.showNote = true;
+    },
+    test() {
       this.showAdd = false;
       this.showEdit = false;
       this.showNote = true;
     },
-    resetLastNoteID() {
-      this.lastNoteID = '';
+    showUpdateForm(id) {
+      this.updateCurrentNote(id);
+      this.lastNoteID = id;
+      // state change
+      this.showAdd = false;
+      this.showEdit = true;
+      this.showNote = false;
     },
   },
 });

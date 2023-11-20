@@ -4,7 +4,7 @@
       <input
         type="text"
         class="input-title"
-        placeholder="New note title"
+        placeholder="New title"
         v-model="title"
       />
 
@@ -53,7 +53,7 @@ const handleForm = (e) => {
     title.value = '';
     content.value = '';
   } else {
-    alert("Note title can't be blank");
+    alert("Title can't be blank");
   }
 };
 </script>

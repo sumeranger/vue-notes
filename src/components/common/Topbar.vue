@@ -3,7 +3,7 @@
     <div class="topbar-title">
       Notes
       <span
-        @click="showAddNoteForm"
+        @click="noteStore.showAddForm"
         class="action-icon material-symbols-sharp"
       >
         edit_note
@@ -28,9 +28,4 @@
 <script setup>
 import { useNoteStore } from '@/stores/NoteStore';
 const noteStore = useNoteStore();
-
-const showAddNoteForm = () => {
-  noteStore.resetLastNoteID();
-  noteStore.showAddForm();
-};
 </script>

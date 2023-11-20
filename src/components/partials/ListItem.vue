@@ -16,7 +16,7 @@
       v-for="note in notes"
       :key="note.id"
     >
-      <p @click="noteStore.viewSelectedNote(note.id)">
+      <p @click="noteStore.showSelectedNote(note.id)">
         {{ note.title.substring(0, wordLimit) }}
         {{ note.title.length > wordLimit ? '...' : '' }}
       </p>

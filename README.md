@@ -7,6 +7,7 @@ This template should help get you started developing with Vue 3 in Vite.
 1. List all, pinned notes
 2. Add new note (title and content, only text now)
 3. Click specific note and view it
+4. Edit the note
 
 ## Project Setup
 
