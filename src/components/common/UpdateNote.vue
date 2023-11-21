@@ -47,6 +47,7 @@ const handleUpdateForm = (e) => {
       title: title.value,
       content: content.value,
       timestamp: Date.now(),
+      pinned: noteStore.currentNote.pinned,
     });
     noteStore.showSelectedNote(insertId);
   } else {
