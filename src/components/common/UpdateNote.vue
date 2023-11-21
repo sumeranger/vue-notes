@@ -9,7 +9,7 @@
       />
       <contenteditable
         tag="div"
-        className="content-editable"
+        class="content-editable"
         :contenteditable="true"
         v-model="content"
         :no-nl="false"

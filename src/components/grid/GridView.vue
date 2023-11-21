@@ -1,7 +1,7 @@
 <template>
-  <div className="notes-content-grid">
+  <div class="grid-wrapper">
     <div
-      className="notes-content-all-notes"
+      class="grid"
       v-if="
         !noteStore.showAdd &&
         !noteStore.showNote &&
@@ -17,7 +17,7 @@
       />
     </div>
     <div
-      className="notes-content-all-notes"
+      class="grid"
       v-if="!noteStore.showAdd && !noteStore.showNote && !noteStore.showEdit"
     >
       <GridItem
@@ -42,3 +42,29 @@ import { useNoteStore } from '@/stores/NoteStore';
 
 const noteStore = useNoteStore();
 </script>
+
+<style scoped>
+.grid-wrapper {
+  display: flex;
+  width: 100%;
+  flex-flow: column;
+  padding: 15px 20px;
+  width: 100%;
+  background-color: #f4f2de;
+  overflow-y: scroll;
+  font-size: 0.825rem;
+  line-height: 1.25rem;
+}
+.grid {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-flow: column;
+}
+.grid-wrapper .notes-content {
+  width: 100%;
+  height: 100%;
+}
+</style>
