@@ -2,6 +2,8 @@
 
 Vue + Pinia Notes App.
 
+[Demo](https://www.youtube.com/watch?v=0FsauSBCyro)
+
 ## Functionality
 
 1. List all, pinned notes
